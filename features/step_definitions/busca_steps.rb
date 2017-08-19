@@ -21,6 +21,12 @@ Quando(/^favoritar o filme$/) do
   find_elements(:id, 'favorite').first.click
 end
 
+Quando(/^realizar a busca por título e ano$/) do
+  find_element(:id, 'search_title').send_keys('Batman')
+  find_element(:id, 'year').send_keys('1993')
+  find_element(:id, 'search').click
+end
+
 Então(/^devo visualizar o resultado da busca$/) do
   find_element(:id, 'movie').displayed?
 end
@@ -29,3 +35,4 @@ Então(/^devo visualizar a mensagem de erro "([^"]*)"$/) do |message|
   message_to_search = MESSAGES[message.tr(' ','_').to_sym]
   wait { find_element(xpath: "//android.widget.TextView[@text='#{message_to_search}']") }
 end
+

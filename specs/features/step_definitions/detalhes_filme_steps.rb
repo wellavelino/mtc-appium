@@ -1,20 +1,18 @@
 Quando(/^entrar nos detalhes do filme$/) do
-  find_element(:id, 'movie').click
+  @page = DetalhesFilmeScreen.new
+  @page.check_trait
+
+  @page.touch_movie
 end
 
 Então(/^devo visualizar os detalhes do filme selecionado$/) do
-  find_element(:id, 'title').displayed?
-  find_element(:id, 'subtitle').displayed?
+  @page.movie_details_viisble?
 end
 
 Quando(/^favoritar o filme detalhado$/) do
-  wait { find_element(:id, 'favorite').click }
+  @page.favorite_movie
 end
 
 Então(/^devo visualizar o filme na lista de favoritos$/) do
-  movie_searched = find_element(:id, 'title').text
-
-  find_element(:xpath, "//*[@content-desc='voltar']").click
-  find_element(:xpath, "//*[@text='FAVORITOS']").click
-  find_element(:xpath, "//*[@text='#{movie_searched}']")
+  fail 'Movie not favorited' unless @page.movie_favorited?
 end

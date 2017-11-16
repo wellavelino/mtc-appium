@@ -9,31 +9,30 @@ Quando(/^realizar a buscar por um filme$/) do
 end
 
 Quando(/^realizar a busca por um filme inexistente$/) do
-  find_element(:id, 'search_title').send_keys('Dollynho')
-  find_element(:id, 'search').click
+  @page.search_movie_by_title('Dollynho')
+  @page.touch_search_button
 end
 
 Quando(/^inserir o ano para a buscar$/) do
-  find_element(:id, 'year').send_keys('2000')
+  @page.enter_year('2000')
 end
 
 Quando(/^favoritar o filme$/) do
-  @movie = find_element(:id, 'title').text
-  find_elements(:id, 'favorite').first.click
+  @page.favorite_movie
 end
 
 Quando(/^realizar a busca por título e ano$/) do
-  find_element(:id, 'search_title').send_keys('Batman')
-  find_element(:id, 'year').send_keys('1993')
-  find_element(:id, 'search').click
+  @page.search_movie_by_title('Batman')
+  @page.enter_year('1993')
+  @page.touch_search_button
 end
 
 Então(/^devo visualizar o resultado da busca$/) do
-  wait { find_element(:id, 'movie').displayed? }
+  fail 'Movie not found' unless @page.movie_displayed?
 end
 
 Então(/^devo visualizar a mensagem de erro "([^"]*)"$/) do |message|
   message_to_search = MESSAGES[message.tr(' ', '_').to_sym]
-  wait { find_element(xpath: "//android.widget.TextView[@text='#{message_to_search}']") }
+  @page.visible!(message_to_search, type: 'text', timeout: 10)
 end
 

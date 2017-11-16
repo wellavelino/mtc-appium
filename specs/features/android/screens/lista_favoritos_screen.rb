@@ -1,6 +1,9 @@
 class ListaFavoritosScreen < BaseScreen
 
-# Declare todos os elementos da tela
-  # identificator(:trait)               { pending 'Insert button identificator' }
-  # identificator(:button)              { pending 'Insert button identificator' }
+  identificator(:favorite_tab)              { 'FAVORITOS' }
+
+  def movie_favorited?
+    find_element(:xpath, "//*[@text='#{favorite_tab}']").click
+    find_element(:xpath, "//*[@text='#{@movie}']")
+  end
 end

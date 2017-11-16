@@ -1,5 +1,5 @@
 [caps]
     platformName = "Android"
     deviceName = "Droid22"
-    app = "../app-debug.apk"
+    app = "/Users/wellingtonsantos/concrete/mtc-appium/specs/features/support/app-debug.apk"
     automationName = "UiAutomator2"

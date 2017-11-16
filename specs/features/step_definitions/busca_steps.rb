@@ -1,7 +1,7 @@
 Dado(/^que estou na home$/) do
-  diff_metric = nakal_execute("Home")
   @page = BuscaScreen.new
   @page.check_trait
+  diff_metric = nakal_execute("home_screen")
 end
 
 Quando(/^realizar a buscar por um filme$/) do

@@ -1,4 +1,5 @@
 Dado(/^que estou na home$/) do
+  diff_metric = nakal_execute("Home")
   @page = BuscaScreen.new
   @page.check_trait
 end

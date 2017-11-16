@@ -6,3 +6,4 @@ gem 'appium_console'
 gem "cucumber"
 gem 'sunomono'
 gem 'pry'
+gem 'nakal'
